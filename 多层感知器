@@ -1,1 +1,29 @@
 单层神经元的缺陷：无法拟合异或运算，要求必须是线性可分的，但异或问题无法找到一条直线分割两个类
+import tensorflow as tf
+import pandas as pd
+import matplotlib.pyplot as plt
+
+print("tensorflow version:{}". format(tf.__version__))
+data = pd.read_csv('C:/Users/zzq0126/Desktop/python/try2/Income1.csv')
+print(data)
+win=plt.scatter(data.Education,data.Income)
+plt.show()
+
+model = tf.keras.Sequential()
+model.add(tf.keras.layers.Dense(1,input_shape=(1,)))
+
+model.summary()
+
+model.compile(optimizer='adam', loss="mse")
+
+history = model.fit(data.Education,data.Income, epochs=5000)
+
+print(history)
+
+y = model.predict(data.Education)
+print(y)
+
+x = [12.000000, 12.112345]
+z = model.predict(x)
+
+print(z)
