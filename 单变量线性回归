@@ -1,0 +1,16 @@
+单变量线性回归算法
+损失函数：预测值和真实值之间差的平均值，使用均方差作为成本函数
+优化：梯度下降算法
+import numpy as np
+from tensorflow import keras
+
+model = keras.Sequential(keras.layers.Dense(units=1, input_shape=[1]))#创建模型输入大小为1的全连接层
+model.compile(optimizer='sgd', loss='mean_squared_error')#编译模型，优化器为sgd,损失函数为mean_sequared_error均方差
+
+xs = np.array([1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0], dtype=float)#数据
+ys = np.array([1.0, 3.0, 5.0, 7.0, 9.0, 11.0, 13.0, 15.0, 17.0],dtype=float)#实际结果
+
+model.fit(xs, ys, epochs=500)#训练
+print(model.predict([10.0]))
+
+实现结果为18.89
